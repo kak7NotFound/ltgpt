@@ -27,9 +27,9 @@ message_input.addEventListener("blur", () => {
   window.scrollTo(0, 0);
 });
 
-message_input.addEventListener("focus", () => {
-  document.documentElement.scrollTop = document.documentElement.scrollHeight;
-});
+// message_input.addEventListener("focus", () => {
+//   document.documentElement.scrollTop = document.documentElement.scrollHeight;
+// });
 
 const delete_conversations = async () => {
   localStorage.clear();

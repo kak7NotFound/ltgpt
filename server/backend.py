@@ -80,6 +80,7 @@ class Backend_Api:
 
             def stream():
                 for chunk in gpt_resp.iter_lines():
+                    print(chunk)
                     try:
                         decoded_line = loads(chunk.decode("utf-8").split("data: ")[1])
                         token = decoded_line["choices"][0]['delta'].get('content')
