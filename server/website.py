@@ -1,7 +1,7 @@
-from flask import render_template, send_file, redirect
+from flask import render_template, send_file, redirect, send_from_directory, request, jsonify
 from time import time
 from os import urandom
-
+import tiktoken
 
 class Website:
     def __init__(self, app) -> None:
@@ -24,6 +24,17 @@ class Website:
                 'methods': ['GET', 'POST']
             }
         }
+        @app.route('/files/<path:filename>')
+        def serve_file(filename):
+            return send_from_directory('files', filename)
+        
+        @app.route('/count_tokens', methods=['POST'])
+        def count_tokens():
+            # TODO Доделать
+            data = request.get_json()
+            text = data['text']
+            token_count = 1
+            return jsonify({'token_count': token_count})
 
     def _chat(self, conversation_id):
         if not '-' in conversation_id:
@@ -39,3 +50,5 @@ class Website:
             return send_file(f"./../client/{folder}/{file}", as_attachment=False)
         except:
             return "File not found", 404
+            
+

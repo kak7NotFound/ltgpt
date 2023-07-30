@@ -1,16 +1,18 @@
-// URLs of the encoder files
-const encoderJsonUrl = 'https://cdn.discordapp.com/attachments/400300649562243093/1135340649089073282/encoder.json';
-const vocabBpeUrl = 'https://cdn.discordapp.com/attachments/400300649562243093/1135340648808058990/vocab.bpe';
+var message_input_ = document.getElementById(`message-input`);
 
-// Fetch the encoder files
-const encoderPromise = fetch(encoderJsonUrl).then(response => response.json());
-const vocabPromise = fetch(vocabBpeUrl).then(response => response.text());
+message_input_.addEventListener('input', async () => {
+    const text = message_input_.value;
 
-Promise.all([encoderPromise, vocabPromise]).then(([encoder, vocab]) => {
-  // Initialize the Encoder with the fetched data
-  const enc = new Encoder(encoder, vocab);
+    const response = await fetch('/count_tokens', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text: text })
+    });
 
-  // Now you can use the Encoder
-  const tokens = enc.encode('Hello, world!');
-  console.log(tokens);
+    const data = await response.json();
+    const token_count = data.token_count;
+
+    console.log(`Token count: ${token_count}`);
 });
