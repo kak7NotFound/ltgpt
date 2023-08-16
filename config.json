@@ -4,7 +4,7 @@
         "port" : 30000,
         "debug": false
     },
-    "openai_key": "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",
+    "openai_key": "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",
 
     "openai_api_base": "https://api.openai.com",
     "proxy": {

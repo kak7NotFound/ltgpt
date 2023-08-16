@@ -793,3 +793,23 @@ a:-webkit-any-link {
     --colour-3: hsl(209 50% 90%);
     --conversations: hsl(209 50% 80%);
 }
+.logo {
+    float: left;
+    padding-left: 10px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.profile {
+    float: right;
+    padding-right: 10px;
+}
+
+.profile img {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+}
